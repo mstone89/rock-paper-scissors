@@ -21,47 +21,44 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     alert('It\'s a stalemate!')
   } else if (playerSelection === rock && computerSelection === scissors) {
-    playerSelection == true;
     alert('You win! Rock beats Scissors.')
+    return true;
   } else if (playerSelection === rock && computerSelection === paper) {
-    playerSelection == false;
     alert('You lose! Paper beats Rock.')
+    return false;
   } else if (playerSelection === paper && computerSelection === rock) {
-    playerSelection == true;
     alert('You win! Paper beats Rock.')
+    return true;
   } else if (playerSelection === paper && computerSelection === scissors) {
-    playerSelection == false;
     alert('You lose! Scissors beats Paper.')
+    return false;
   } else if (playerSelection === scissors && computerSelection === paper) {
-    playerSelection == true;
     alert('You win! Scissors beats Paper.')
+    return true;
   } else if (playerSelection === scissors && computerSelection === rock) {
-    playerSelection == false;
     alert('You lose! Rock beats Scissors.')
+    return false;
   } else {
     alert('Your input is invalid! Choose rock, paper, or scissors')
   }
-  return playerSelection;
 }
 
 function game() {
   let scoreArr = [];
   for (let i = 0; i <= 5; i++) {
-    playRound(playerSelection, computerSelection);
-    scoreArr.push(playerSelection)
+    const playerSelection = prompt('Choose rock, paper, or scissors.', 'Rock, Paper, Scissors?').toLowerCase();
+    const computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    scoreArr.push(result)
   }
   if (scoreArr.length < 5) {
     alert('You didn\'t play enough rounds, refresh the page and try again.')
-    break;
   } else if (scoreArr === true) {
     alert('User Wins!')
   } else {
     alert('Computer Wins! We\'re all doomed.')
   }
 }
-
-const playerSelection = prompt('Choose rock, paper, or scissors.', 'Rock, Paper, Scissors?').toLowerCase()
-const computerSelection = computerPlay();
 
 console.log(game());
 
