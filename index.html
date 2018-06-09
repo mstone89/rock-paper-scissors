@@ -21,30 +21,49 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     alert('It\'s a stalemate!')
   } else if (playerSelection === rock && computerSelection === scissors) {
+    playerSelection == true;
     alert('You win! Rock beats Scissors.')
   } else if (playerSelection === rock && computerSelection === paper) {
+    playerSelection == false;
     alert('You lose! Paper beats Rock.')
   } else if (playerSelection === paper && computerSelection === rock) {
+    playerSelection == true;
     alert('You win! Paper beats Rock.')
   } else if (playerSelection === paper && computerSelection === scissors) {
+    playerSelection == false;
     alert('You lose! Scissors beats Paper.')
   } else if (playerSelection === scissors && computerSelection === paper) {
+    playerSelection == true;
     alert('You win! Scissors beats Paper.')
   } else if (playerSelection === scissors && computerSelection === rock) {
+    playerSelection == false;
     alert('You lose! Rock beats Scissors.')
   } else {
-    alert('Your input is invalid!')
+    alert('Your input is invalid! Choose rock, paper, or scissors')
   }
+  return playerSelection;
 }
 
 function game() {
-  
+  let scoreArr = [];
+  for (let i = 0; i <= 5; i++) {
+    playRound(playerSelection, computerSelection);
+    scoreArr.push(playerSelection)
+  }
+  if (scoreArr.length < 5) {
+    alert('You didn\'t play enough rounds, refresh the page and try again.')
+    break;
+  } else if (scoreArr === true) {
+    alert('User Wins!')
+  } else {
+    alert('Computer Wins! We\'re all doomed.')
+  }
 }
 
 const playerSelection = prompt('Choose rock, paper, or scissors.', 'Rock, Paper, Scissors?').toLowerCase()
 const computerSelection = computerPlay();
 
-console.log(playRound(playerSelection, computerSelection));
+console.log(game());
 
 
 </script>
