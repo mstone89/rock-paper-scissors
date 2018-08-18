@@ -19,64 +19,52 @@
 
 <script>
 
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors')
+const playerSelection = document.querySelectorAll('button');
 
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((button) => {
+playerSelection.forEach((button) => {
   button.addEventListener('click', (e) => {
-    console.log(e)
+    playRound(button.id);
   });
 });
 
 
 function computerPlay() {
   let randomNumber = Math.floor(Math.random() * 3);
-  let computerChoice = '';
+  let computerSelection;
   if (randomNumber == 0) {
-    computerChoice = rock;
+    computerSelection = document.getElementById("rock").id;
   } else if (randomNumber == 1) {
-    computerChoice = paper;
+    computerSelection = document.getElementById("paper").id;
   } else {
-    computerChoice = scissors;
+    computerSelection = document.getElementById("scissors").id;
   }
-  return computerChoice;
+  return computerSelection;
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+  let computerSelection = computerPlay();
   if (playerSelection === computerSelection) {
-    //alert('It\'s a stalemate!')
-    return 0;
+    return;
   } else if (playerSelection === rock && computerSelection === scissors) {
-    //alert('You win! Rock beats Scissors.')
     return true;
   } else if (playerSelection === rock && computerSelection === paper) {
-    //alert('You lose! Paper beats Rock.')
     return false;
   } else if (playerSelection === paper && computerSelection === rock) {
-    //alert('You win! Paper beats Rock.')
     return true;
   } else if (playerSelection === paper && computerSelection === scissors) {
-    //alert('You lose! Scissors beats Paper.')
     return false;
   } else if (playerSelection === scissors && computerSelection === paper) {
-    //alert('You win! Scissors beats Paper.')
     return true;
   } else if (playerSelection === scissors && computerSelection === rock) {
-    //alert('You lose! Rock beats Scissors.')
     return false;
   } else {
-    //alert('Invalid input. Choose rock, paper, or scissors next time.')
     return false;
   }
 }
 
-
+/*
 let userScore = 0;
 let computerScore = 0;
-//const playerSelection = prompt('Choose rock, paper, or scissors.', 'Rock, Paper, Scissors?').toLowerCase();
 const computerSelection = computerPlay();
 let result = playRound(playerSelection, computerSelection);
 
@@ -99,6 +87,6 @@ if (userScore == computerScore) {
 }
 
 
-
+*/
 
 </script>
