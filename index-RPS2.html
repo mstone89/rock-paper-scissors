@@ -1,4 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock, Paper, Scissors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Rock, Paper, Scissors</h1>
+  <h3>Make your selection</h3>
+  <div id="container">
+    <div id="buttons">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+    <div id="scores">
+      <h2 id="user-score">User Score:</h2>
+      <h2 id="comp-score">Computer Score:</h2>
+    </div>
+  </div>
+
 <script>
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    let playerSelection = button.id;
+    const computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    const h2Userscore = document.querySelector('#user-score');
+    const h2Compscore = document.querySelector('#comp-score');
+    let userScore = 0;
+    let computerScore = 0;
+    if (result === true) {
+      userScore += 1;
+    } else if (result === false) {
+      computerScore += 1;
+    }
+    h2Userscore.innerHTML += userScore;
+    h2Compscore.innerHTML += computerScore;
+  });
+});
 
 const rock = 'rock';
 const paper = 'paper';
@@ -18,33 +64,48 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+  const container = document.querySelector('#container');
+
+  const displayResults = document.createElement('div');
+  displayResults.classList.add('results');
+
   if (playerSelection === computerSelection) {
-    alert('It\'s a stalemate!')
+    displayResults.textContent = 'It\'s a stalemate!';
+    container.appendChild(displayResults);
     return 0;
   } else if (playerSelection === rock && computerSelection === scissors) {
-    alert('You win! Rock beats Scissors.')
+    displayResults.textContent = 'You win! Rock beats Scissors.';
+    container.appendChild(displayResults);
     return true;
   } else if (playerSelection === rock && computerSelection === paper) {
-    alert('You lose! Paper beats Rock.')
+    displayResults.textContent = 'You lose! Paper beats Rock.';
+    container.appendChild(displayResults);
     return false;
   } else if (playerSelection === paper && computerSelection === rock) {
-    alert('You win! Paper beats Rock.')
+    displayResults.textContent = 'You win! Paper beats Rock.';
+    container.appendChild(displayResults);
     return true;
   } else if (playerSelection === paper && computerSelection === scissors) {
-    alert('You lose! Scissors beats Paper.')
+    displayResults.textContent = 'You lose! Scissors beats Paper.';
+    container.appendChild(displayResults);
     return false;
   } else if (playerSelection === scissors && computerSelection === paper) {
-    alert('You win! Scissors beats Paper.')
+    displayResults.textContent = 'You win! Scissors beats Paper.';
+    container.appendChild(displayResults);
     return true;
   } else if (playerSelection === scissors && computerSelection === rock) {
-    alert('You lose! Rock beats Scissors.')
+    displayResults.textContent = 'You lose! Rock beats Scissors.';
+    container.appendChild(displayResults);
     return false;
   } else {
-    alert('Invalid input. Choose rock, paper, or scissors next time.')
+    displayResults.textContent = 'Invalid input. Choose rock, paper, or scissors next time.';
+    container.appendChild(displayResults);
     return false;
   }
 }
 
+
+/*
 function game() {
   let userScore = 0;
   let computerScore = 0;
@@ -52,12 +113,7 @@ function game() {
     const playerSelection = prompt('Choose rock, paper, or scissors.', 'Rock, Paper, Scissors?').toLowerCase();
     const computerSelection = computerPlay();
     let result = playRound(playerSelection, computerSelection);
-    if (result === 0) {
-      continue;
-    } else if (result === true) {
-      userScore += 1;
-    } else {
-      computerScore += 1;
+
     }
   }
   if (userScore == computerScore) {
@@ -67,8 +123,11 @@ function game() {
   } else {
     alert('Computer Wins! We\'re all doomed. User score = ' + userScore + '. Computer score = ' + computerScore + '.')
   }
-}
+*/
 
-game();
+//game();
 
 </script>
+
+</body>
+</html>
